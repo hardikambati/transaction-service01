@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+
+  service01:
+    build: .
+    container_name: service-01
+    restart: on-failure
+    volumes:
+      - .:/service-01
+    env_file:
+      - ./.env
+    command: >
+      sh -c "python3 main.py"
+    networks:
+      - realtime-transaction-nextwork-ref
+
+networks:
+  realtime-transaction-nextwork-ref:
+    external:
+      name: main_realtime-transaction-nextwork
